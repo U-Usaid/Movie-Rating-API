@@ -22,3 +22,13 @@ public class MovieController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //addMovie
+    @PostMapping("/addMovie")
+    public Movie createCourse(@RequestBody Movie movie) {
+        return movieService.addMovies(movie);
+    }
+
+
+
+}
