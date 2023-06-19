@@ -29,7 +29,17 @@ public class MovieController {
         return movieService.addMovies(movie);
     }
 
+    //UpdateMovie
 
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Movie> updateMovie(@PathVariable(Long id), @RequestBody(Movie movie)) {
+//        Movie updatedMovie = movieService.updateMovie(id, movie);
+//        if (updatedMovie != null) {
+//            return ResponseEntity.ok(updatedMovie);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @DeleteMapping("/delete/{id}")
     public String deleteMovie(@PathVariable Long id) {
