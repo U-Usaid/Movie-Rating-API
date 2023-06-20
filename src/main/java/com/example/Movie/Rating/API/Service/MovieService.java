@@ -51,8 +51,27 @@ public class MovieService {
     }
 
 
-    //Movie Rating
 
+
+    //Movie Rating
+    public Movie rateMovie(Long id, int rating, String review) {
+        Movie movie = movieRepository.findById(id).orElse(null);
+        if (movie != null) {
+            // Calculate new average rating
+            double currentRatingSum = movie.getAverageRating() * movie.getTotalRatings();
+            double newRatingSum = currentRatingSum + rating;
+            int newTotalRatings = movie.getTotalRatings() + 1;
+            double newAverageRating = newRatingSum / newTotalRatings;
+
+            // Update movie properties
+            movie.setAverageRating(newAverageRating);
+            movie.setTotalRatings(newTotalRatings);
+
+            // Save the updated movie to the database
+            return movieRepository.save(movie);
+        }
+        return null;
+    }
 
 
 }
