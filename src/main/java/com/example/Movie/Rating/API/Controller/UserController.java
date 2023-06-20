@@ -2,25 +2,22 @@ package com.example.Movie.Rating.API.Controller;
 
 import com.example.Movie.Rating.API.Model.User;
 import com.example.Movie.Rating.API.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController("/api")
 public class UserController {
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    UserService userService;
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user) {
-        // Call the UserService to register the user
-        userService.registerUser(user);
-
-        // Redirect to the login page or any other desired page
-        return "redirect:/login";
+    public ResponseEntity<String> add(@RequestBody User user){
+        userService.add(user);
+        return ResponseEntity.ok("User registered successfully");
     }
 }
 
