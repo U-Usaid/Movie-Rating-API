@@ -31,20 +31,20 @@ public class MovieController {
 
     //UpdateMovie
 
-//   @PutMapping("/{id}")
-//    public ResponseEntity<Movie> updateMovie(@PathVariable(Long id), @RequestBody(Movie movie)) {
-//        Movie updatedMovie = movieService.updateMovie(id, movie);
-//        if (updatedMovie != null) {
-//            return ResponseEntity.ok(updatedMovie);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
     @PutMapping("/update/{id}")
-    public String editCourse(@RequestBody Movie movie){
-        Movie editMovie = movieService.editMovie(movie);
-        return "editing course id ";}
+    public ResponseEntity<Movie> updateMovie(@PathVariable("id") Long id, @RequestBody Movie movie) {
+        Movie updatedMovie = movieService.updateMovie(id, movie);
+        if (updatedMovie != null) {
+            return ResponseEntity.ok(updatedMovie);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+//    @PutMapping("/update/{id}")
+//    public String editCourse(@RequestBody Movie movie){
+//        Movie editMovie = movieService.editMovie(movie);
+//        return "editing course id ";}
 
 
     @DeleteMapping("/delete/{id}")
