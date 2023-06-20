@@ -29,6 +29,9 @@ public class MovieController {
         return movieService.addMovies(movie);
     }
 
+
+
+
     //UpdateMovie
 
     @PutMapping("/update/{id}")
@@ -52,6 +55,20 @@ public class MovieController {
         movieService.deleteMovie(id);
 
         return "Movie id " + id + " Deleted";
+    }
+
+
+    //rateMovie
+    @PostMapping("/{id}/rating")
+    public ResponseEntity<Movie> rateMovie(@PathVariable("id") Long id,
+                                           @RequestParam("rating") int rating,
+                                           @RequestParam("review") String review) {
+        Movie ratedMovie = movieService.rateMovie(id, rating, review);
+        if (ratedMovie != null) {
+            return ResponseEntity.ok(ratedMovie);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
