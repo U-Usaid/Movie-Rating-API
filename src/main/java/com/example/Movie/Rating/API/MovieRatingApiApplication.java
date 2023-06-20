@@ -9,5 +9,5 @@ public class MovieRatingApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MovieRatingApiApplication.class, args);
 	}
-
+// test github
 }
