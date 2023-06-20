@@ -13,6 +13,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+    //localhost:8080/get/1
     @GetMapping("/get/{Id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable("Id") Long id) {
         Movie movie = movieService.getMovieById(id);
@@ -44,14 +45,8 @@ public class MovieController {
         }
     }
 
-//    @PutMapping("/update/{id}")
-//    public String editCourse(@RequestBody Movie movie){
-//        Movie editMovie = movieService.editMovie(movie);
-//        return "editing course id ";}
-
-
     @DeleteMapping("/delete/{id}")
-    public String deleteMovie(@PathVariable Long id) {
+    public String deleteMovie(@PathVariable("id") Long id) {
         movieService.deleteMovie(id);
 
         return "Movie id " + id + " Deleted";
@@ -61,7 +56,7 @@ public class MovieController {
     //rateMovie
     @PostMapping("/{id}/rating")
     public ResponseEntity<Movie> rateMovie(@PathVariable("id") Long id,
-                                           @RequestParam("rating") int rating,
+                                           @RequestParam("rating") Integer rating,
                                            @RequestParam("review") String review) {
         Movie ratedMovie = movieService.rateMovie(id, rating, review);
         if (ratedMovie != null) {

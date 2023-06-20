@@ -40,10 +40,6 @@ public class MovieService {
         return null;
     }
 
-//    public Movie editMovie(Movie movie){
-//        return movieRepository.save(movie);
-//    }
-
 
     //Movie Deletion
     public void deleteMovie(Long id){
@@ -51,10 +47,8 @@ public class MovieService {
     }
 
 
-
-
     //Movie Rating
-    public Movie rateMovie(Long id, int rating, String review) {
+    public Movie rateMovie(Long id, Integer rating, String review) {
         Movie movie = movieRepository.findById(id).orElse(null);
         if (movie != null) {
             // Calculate new average rating
