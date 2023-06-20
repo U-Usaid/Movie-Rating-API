@@ -20,5 +20,7 @@ public class Movie {
     String title;
     String genre;
     Date releaseYear;
+     double averageRating;
+     int totalRatings;
 
 }
