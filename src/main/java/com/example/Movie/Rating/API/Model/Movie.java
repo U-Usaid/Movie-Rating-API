@@ -1,26 +1,25 @@
 package com.example.Movie.Rating.API.Model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "movie")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
+    Long movieId;
     String title;
     String genre;
     Date releaseYear;
-    Double averageRating;
-    Integer totalRatings;
+    @OneToMany(mappedBy = "ratedMovie",cascade = CascadeType.ALL)
+    Set<Rating> ratings;
 
 }
