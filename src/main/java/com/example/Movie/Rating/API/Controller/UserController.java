@@ -7,14 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/api")
+@RestController
+@RequestMapping("/api/register")
 public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping
     public ResponseEntity<String> add(@RequestBody User user){
         userService.add(user);
         return ResponseEntity.ok("User registered successfully");

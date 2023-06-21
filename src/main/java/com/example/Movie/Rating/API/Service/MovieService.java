@@ -2,6 +2,7 @@ package com.example.Movie.Rating.API.Service;
 
 import com.example.Movie.Rating.API.Model.Movie;
 import com.example.Movie.Rating.API.Repositories.MovieRepository;
+import com.example.Movie.Rating.API.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,8 @@ import java.util.List;
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;
+    @Autowired
+    UserRepository userRepository;
 
 
 
@@ -43,29 +46,12 @@ public class MovieService {
 
     //Movie Deletion
     public void deleteMovie(Long id){
+
         movieRepository.deleteById(id);
     }
 
-
-    //Movie Rating
-    public Movie rateMovie(Long id, Integer rating, String review) {
-        Movie movie = movieRepository.findById(id).orElse(null);
-        if (movie != null) {
-            // Calculate new average rating
-            double currentRatingSum = movie.getAverageRating() * movie.getTotalRatings();
-            double newRatingSum = currentRatingSum + rating;
-            int newTotalRatings = movie.getTotalRatings() + 1;
-            double newAverageRating = newRatingSum / newTotalRatings;
-
-            // Update movie properties
-            movie.setAverageRating(newAverageRating);
-            movie.setTotalRatings(newTotalRatings);
-
-            // Save the updated movie to the database
-            return movieRepository.save(movie);
-        }
-        return null;
-    }
-
+//    public List<Movie> findTopMovies(){
+//        return movieRepository.findTopRatedMovies();
+//    }
 
 }
